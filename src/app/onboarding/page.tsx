@@ -19,6 +19,7 @@ import {
 import { auth } from "@/lib/auth"
 import { imgSrc } from "@/lib/api"
 import type { FilterCity, AiRouteMetaStop } from "@/lib/types"
+import { ruPlacesCount } from "@/lib/plurals"
 import styles from "./onboarding.module.css"
 
 function captionForStop(postId: number, stops: AiRouteMetaStop[] | undefined): string | null {
@@ -198,7 +199,7 @@ export default function OnboardingPage() {
                     >
                       <MapPin size={13} className={styles.cityItemIcon} />
                       <span>{c.name}</span>
-                      <span className={styles.cityCount}>{c.placesCount} мест</span>
+                      <span className={styles.cityCount}>{ruPlacesCount(c.placesCount)}</span>
                       {selectedCity?.id === c.id && <Check size={14} className={styles.cityCheck} />}
                     </button>
                   </li>

@@ -29,6 +29,7 @@ import { auth } from "@/lib/auth"
 import { searchGeocode } from "@/lib/geocoding"
 import type { GeocodeSearchResult } from "@/lib/geocoding"
 import type { FilterCity, PostResponse } from "@/lib/types"
+import { ruPlacesCount } from "@/lib/plurals"
 import BottomBar from "@/components/ui/BottomBar/BottomBar"
 import styles from "./create.module.css"
 
@@ -398,7 +399,7 @@ export default function CreateRoutePage() {
                   <option value="">Выберите город…</option>
                   {guideCities.map((c) => (
                     <option key={c.id} value={String(c.id)}>
-                      {c.name} ({c.placesCount} мест)
+                      {c.name} ({ruPlacesCount(c.placesCount)})
                     </option>
                   ))}
                 </select>
