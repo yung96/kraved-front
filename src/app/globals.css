@@ -1,0 +1,236 @@
+/*RESET CSS*/
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font-weight: normal;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+article, aside, figure, footer, header, nav, section, details, summary {display: block;}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+img,
+object,
+embed {max-width: 100%;}
+
+html {overflow-y: scroll;}
+
+
+ul {list-style: none;}
+
+blockquote, q {quotes: none;}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {content: ''; content: none;}
+
+a {margin: 0; padding: 0; font-size: 100%; vertical-align: baseline;}
+/* Не перебиваем стили у <a> с классами (CSS Modules) */
+a[class] { background: unset; color: unset; }
+
+del {text-decoration: line-through;}
+
+abbr[title], dfn[title] {border-bottom: 1px dotted #000; cursor: help;}
+
+table {border-collapse: collapse; border-spacing: 0;}
+th {font-weight: bold; vertical-align: bottom;}
+td {font-weight: normal; vertical-align: top;}
+
+hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0;}
+
+input, select {vertical-align: middle;}
+
+pre {
+    white-space: pre; /* CSS2 */
+    white-space: pre-wrap; /* CSS 2.1 */
+    white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+    word-wrap: break-word; /* IE */
+}
+
+input[type="radio"] {vertical-align: text-bottom;}
+input[type="checkbox"] {vertical-align: bottom;}
+.ie7 input[type="checkbox"] {vertical-align: baseline;}
+.ie6 input {vertical-align: text-bottom;}
+
+select, input, textarea {font: 99% sans-serif;}
+
+table {font-size: inherit; font: 100%;}
+
+small {font-size: 85%;}
+
+strong {font-weight: bold;}
+
+td, td img {vertical-align: top;}
+
+sub, sup {font-size: 75%; line-height: 0; position: relative;}
+sup {top: -0.5em;}
+sub {bottom: -0.25em;}
+
+pre, code, kbd, samp {font-family: monospace, sans-serif;}
+
+.clickable,
+label,
+input[type=button],
+input[type=submit],
+input[type=file],
+button {cursor: pointer;}
+
+button, input, select, textarea {margin: 0;}
+
+button,
+input[type=button] {width: auto; overflow: visible;}
+
+.ie7 img {-ms-interpolation-mode: bicubic;}
+
+img {
+    pointer-events: none;
+}
+/*RESET CSS*/
+
+/* ===== Fonts ===== */
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Heavy.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #fff;
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =============================================
+   DESIGN TOKENS — Hyde Design System (Figma)
+   ============================================= */
+:root {
+  /* Hyde White */
+  --hyde-white-0:   #000000;
+  --hyde-white-40:  #858585;
+  --hyde-white-80:  #E6E6E6;
+  --hyde-white-90:  #F6F6F6;
+  --hyde-white-100: #FFFFFF;
+
+  /* Hyde Green */
+  --hyde-green-100: #22EA36;
+  --hyde-green-40:  #206915;
+
+  /* Semantic aliases */
+  --color-bg:           var(--hyde-white-100);
+  --color-surface:      var(--hyde-white-90);
+  --color-border:       var(--hyde-white-80);
+  --color-border-focus: var(--hyde-white-0);
+
+  --color-text:         var(--hyde-white-0);
+  --color-text-secondary: var(--hyde-white-40);
+  --color-text-placeholder: #c0c0c0;
+
+  /* Primary = dark */
+  --color-primary:      var(--hyde-white-0);
+  --color-primary-fg:   var(--hyde-white-100);
+
+  /* Secondary = light grey */
+  --color-secondary:    var(--hyde-white-90);
+  --color-secondary-fg: var(--hyde-white-0);
+
+  /* Accent = Green */
+  --color-accent:       var(--hyde-green-100);
+  --color-accent-dark:  var(--hyde-green-40);
+  --color-accent-fg:    var(--hyde-white-100);
+
+  /* Destructive */
+  --color-destructive:  #e03c3c;
+  --color-destructive-fg: #ffffff;
+
+  /* Seasons */
+  --color-spring:  #d4a8d4;
+  --color-summer:  #f4c842;
+  --color-autumn:  #e59866;
+  --color-winter:  #85c1e9;
+
+  /* Radius — Hyde */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   20px;
+  --radius-card: 24px;
+  --radius-container: 32px;
+  --radius-pill: 100px;
+
+  /* Shadows */
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.06), 0 1px 8px rgba(0,0,0,0.04);
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.06);
+  --shadow-bar:  0 8px 32px rgba(0,0,0,0.18);
+
+  /* Spacing */
+  --page-px:     32px;
+  --page-max-w:  1440px;
+
+  /* Font */
+  --font-base: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}

@@ -1,0 +1,1012 @@
+/* ── Full-screen map page ──────────────────────────────────────────────────── */
+.page {
+  position: relative;
+  height: 100dvh;
+  overflow: hidden;
+  background: #e8e4dc;
+}
+
+/* ── Map fills entire viewport ────────────────────────────────────────────── */
+.mapWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.mapWrap > div {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Loading overlay ──────────────────────────────────────────────────────── */
+.mapLoader {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8e4dc;
+  pointer-events: none;
+}
+
+/* ── Header pill ─────────────────────────────────────────────────────────── */
+.header {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  white-space: nowrap;
+}
+
+.headerPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: var(--hyde-white-100);
+  border: 1px solid var(--hyde-white-80);
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 15px;
+  font-family: var(--font-base);
+  color: var(--hyde-white-0);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.15s;
+  white-space: nowrap;
+}
+
+.headerPill:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.headerChevron {
+  color: var(--hyde-white-40);
+  flex-shrink: 0;
+}
+
+/* ── Category chips row ──────────────────────────────────────────────────── */
+.chips {
+  position: absolute;
+  top: 68px;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  gap: 6px;
+  padding: 0 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.chips::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--hyde-white-100);
+  border: 1px solid var(--hyde-white-80);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-base);
+  color: var(--hyde-white-0);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.chip:active {
+  transform: scale(0.95);
+}
+
+.chipActive {
+  background: var(--hyde-green-100);
+  border-color: var(--hyde-green-100);
+  color: var(--hyde-white-100);
+}
+
+.chipIcon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* ── Map pins (legacy circle style) ──────────────────────────────────────── */
+.pinEl {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  border: 3px solid var(--hyde-white-100);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  line-height: 1;
+}
+
+.pinEl:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.pinElSelected {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  border: 3px solid var(--hyde-white-100);
+  box-shadow: 0 0 0 4px rgba(34, 234, 54, 0.35), 0 4px 14px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transform: scale(1);
+  transition: transform 0.15s, box-shadow 0.15s;
+  line-height: 1;
+}
+
+/* ── Photo card pin (places level) ──────────────────────────────────────── */
+.pinCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
+}
+
+.pinCardInner {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 120px;
+}
+
+.pinCardPhoto {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  display: block;
+}
+
+.pinCardLabel {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pinCardLabelIcon {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  flex-shrink: 0;
+}
+
+.pinCardArrow {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid white;
+  margin-top: -1px;
+}
+
+/* ── City pill pin ───────────────────────────────────────────────────────── */
+.pinCity {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: white;
+  border-radius: 100px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  white-space: nowrap;
+}
+
+/* ── District label pin ──────────────────────────────────────────────────── */
+.pinDistrict {
+  padding: 6px 12px;
+  background: rgba(34, 234, 54, 0.9);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Tab bar: Районы | Места ─────────────────────────────────────────────── */
+.tabBar {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  background: var(--hyde-white-100);
+  border: 1px solid var(--hyde-white-80);
+  border-radius: 100px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  padding: 3px;
+  gap: 2px;
+}
+
+.tab {
+  padding: 10px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-base);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--hyde-white-40);
+  border-radius: 100px;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: var(--hyde-white-0);
+}
+
+.tabActiveDistricts {
+  background: var(--hyde-green-100);
+  color: var(--hyde-white-100);
+}
+
+.tabActivePlaces {
+  background: var(--hyde-green-40);
+  color: var(--hyde-white-100);
+}
+
+/* ── Districts coming soon toast ─────────────────────────────────────────── */
+.districtMsg {
+  position: fixed;
+  bottom: 152px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  background: var(--hyde-white-0);
+  color: var(--hyde-white-100);
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-base);
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  animation: fadeSlideUp 0.25s ease;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ── Location button ──────────────────────────────────────────────────────── */
+.locationBtn {
+  position: fixed;
+  bottom: 148px;
+  right: 16px;
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--hyde-white-100);
+  border: 1px solid var(--hyde-white-80);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--hyde-white-0);
+  transition: box-shadow 0.15s, transform 0.1s;
+}
+
+.locationBtn:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.locationBtn:active {
+  transform: scale(0.93);
+}
+
+.locationBtnActive {
+  background: var(--hyde-green-100);
+  border-color: var(--hyde-green-100);
+  color: var(--hyde-white-100);
+}
+
+/* ── Day Plans button ────────────────────────────────────────────────────── */
+.dayPlansBtn {
+  position: fixed;
+  bottom: 152px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: white;
+  border: 1px solid #E6E6E6;
+  border-radius: 100px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: box-shadow 0.15s, transform 0.1s;
+  font-family: var(--font-base);
+}
+
+.dayPlansBtn:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.dayPlansBtn:active {
+  transform: translateX(-50%) scale(0.96);
+}
+
+/* ── Day Plans sheet content ─────────────────────────────────────────────── */
+.dayPlansScroll {
+  display: flex;
+  gap: 12px;
+  padding: 0 20px 80px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dayPlansScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.dayPlanCard {
+  flex-shrink: 0;
+  position: relative;
+  width: 200px;
+  height: 160px;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-decoration: none;
+  cursor: pointer;
+  background: var(--hyde-white-90);
+  transition: transform 0.15s;
+}
+
+.dayPlanCard:hover {
+  transform: scale(1.02);
+}
+
+.dayPlanCardBg {
+  position: absolute;
+  inset: 0;
+}
+
+.dayPlanCardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.1) 60%, transparent 100%);
+}
+
+.dayPlanCardContent {
+  position: relative;
+  z-index: 1;
+  padding: 10px 12px;
+}
+
+.dayPlanCardTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  font-family: var(--font-base);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.dayPlanCardDesc {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-base);
+  margin-top: 3px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.dayPlanCardMeta {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65);
+  font-family: var(--font-base);
+  margin-top: 4px;
+}
+
+/* Empty state */
+.dayPlansEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 20px 80px;
+  text-align: center;
+}
+
+.dayPlansEmptyText {
+  font-size: 15px;
+  color: var(--hyde-white-40);
+  font-family: var(--font-base);
+}
+
+.dayPlansCreateLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  background: var(--hyde-green-40);
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--hyde-white-100);
+  font-family: var(--font-base);
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.dayPlansCreateLink:hover {
+  background: var(--hyde-green-100);
+}
+
+/* ── Bottom sheet (selected place) ───────────────────────────────────────── */
+.sheetBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: transparent;
+}
+
+.sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 75dvh;
+  background: var(--hyde-white-100);
+  border-radius: 24px 24px 0 0;
+  z-index: 50;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sheetOpen {
+  transform: translateY(0);
+}
+
+.sheetHandle {
+  width: 40px;
+  height: 4px;
+  background: var(--hyde-white-80);
+  border-radius: 2px;
+  margin: 12px auto 0;
+  flex-shrink: 0;
+}
+
+/* Sheet scrollable body */
+.sheetBody {
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding-bottom: 80px;
+}
+
+.sheetBody::-webkit-scrollbar {
+  display: none;
+}
+
+/* Sheet header row */
+.sheetHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 16px 20px 8px;
+  gap: 12px;
+}
+
+.sheetTitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--hyde-white-0);
+  font-family: var(--font-base);
+  line-height: 1.25;
+  letter-spacing: -0.3px;
+  flex: 1;
+}
+
+.sheetClose {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--hyde-white-80);
+  background: var(--hyde-white-90);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--hyde-white-40);
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sheetClose:hover {
+  background: var(--hyde-white-80);
+  color: var(--hyde-white-0);
+}
+
+/* Category tags row */
+.sheetTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 20px 14px;
+}
+
+.sheetTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 100px;
+  background: var(--hyde-white-90);
+  border: 1px solid var(--hyde-white-80);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--hyde-white-40);
+  font-family: var(--font-base);
+}
+
+/* Photo carousel */
+.sheetPhotos {
+  display: flex;
+  gap: 8px;
+  padding: 0 20px 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sheetPhotos::-webkit-scrollbar {
+  display: none;
+}
+
+.sheetPhotoItem {
+  position: relative;
+  width: 180px;
+  height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--hyde-white-90);
+}
+
+.sheetPhotoFallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--hyde-white-80);
+  font-size: 32px;
+  background: var(--hyde-white-90);
+}
+
+/* Description */
+.sheetDesc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--hyde-white-40);
+  font-family: var(--font-base);
+  padding: 0 20px 20px;
+}
+
+/* Route button */
+.sheetActions {
+  padding: 0 20px 20px;
+}
+
+.routeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  background: var(--hyde-green-40);
+  border: none;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font-base);
+  color: var(--hyde-white-100);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.routeBtn:hover {
+  background: #174e0f;
+}
+
+.routeBtn:active {
+  transform: scale(0.98);
+}
+
+/* "Что посмотреть" section */
+.sheetRelated {
+  padding: 0 20px 20px;
+}
+
+.sheetRelatedTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--hyde-white-0);
+  font-family: var(--font-base);
+  margin-bottom: 12px;
+}
+
+/* Related category chips inside sheet */
+.sheetRelatedChips {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sheetRelatedChips::-webkit-scrollbar {
+  display: none;
+}
+
+.sheetRelatedChip {
+  flex-shrink: 0;
+  padding: 7px 14px;
+  border-radius: 100px;
+  background: var(--hyde-white-90);
+  border: 1px solid var(--hyde-white-80);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-base);
+  color: var(--hyde-white-40);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.sheetRelatedChip:hover {
+  background: var(--hyde-white-80);
+  color: var(--hyde-white-0);
+}
+
+/* Related places list */
+.relatedList {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.relatedCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  border-bottom: 1px solid var(--hyde-white-90);
+  transition: background 0.1s;
+}
+
+.relatedCard:last-child {
+  border-bottom: none;
+}
+
+.relatedCardThumb {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  background: var(--hyde-white-90);
+}
+
+.relatedCardInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.relatedCardTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--hyde-white-0);
+  font-family: var(--font-base);
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.relatedCardSub {
+  font-size: 12px;
+  color: var(--hyde-white-40);
+  font-family: var(--font-base);
+  margin-top: 2px;
+}
+
+/* ── Spinner ──────────────────────────────────────────────────────────────── */
+.spin {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Full-screen place card overlay ─────────────────────────────────────── */
+.fullPlace {
+  position: fixed;
+  inset: 0;
+  background: white;
+  z-index: 60;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.fullPlaceScroll {
+  padding: 20px 20px 100px;
+}
+
+.fullPlaceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.fullPlaceTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  font-family: var(--font-base);
+  flex: 1;
+  margin: 0;
+  padding-right: 12px;
+}
+
+.fullPlaceClose {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #E6E6E6;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  color: #555;
+  transition: background 0.15s, color 0.15s;
+}
+
+.fullPlaceClose:hover {
+  background: #f5f5f5;
+  color: #000;
+}
+
+.fullPlaceTags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  font-size: 11px;
+  color: #858585;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-family: var(--font-base);
+}
+
+.fullPlaceTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.fullPlaceActions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.fullPlaceActionBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border: 1px solid #E6E6E6;
+  border-radius: 100px;
+  background: white;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--font-base);
+  cursor: pointer;
+  color: #000;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.fullPlaceActionBtn:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+}
+
+.fullPlacePhotos {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.fullPlacePhotos::-webkit-scrollbar {
+  display: none;
+}
+
+.fullPlacePhotoItem {
+  flex-shrink: 0;
+  width: 200px;
+  height: 150px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background: #f3f3f3;
+}
+
+.fullPlaceDesc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 24px;
+  font-family: var(--font-base);
+}
+
+.fullPlaceWtsTitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #000;
+  font-family: var(--font-base);
+}
+
+.fullPlaceWtsChips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.fullPlaceWtsChip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  border: 1px solid #E6E6E6;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-base);
+  text-transform: uppercase;
+  color: #333;
+}
+
+.fullPlaceNearby {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-top: 1px solid #F6F6F6;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  width: 100%;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s;
+}
+
+.fullPlaceNearby:last-child {
+  border-bottom: 1px solid #F6F6F6;
+}
+
+.fullPlaceNearbyThumb {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  background: #F6F6F6;
+}
+
+.fullPlaceNearbyTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 4px;
+  font-family: var(--font-base);
+  line-height: 1.3;
+}
+
+.fullPlaceNearbyDesc {
+  font-size: 13px;
+  color: #858585;
+  line-height: 1.4;
+  font-family: var(--font-base);
+}

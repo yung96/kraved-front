@@ -1,0 +1,201 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  width: 100%;
+  max-width: 420px;
+  background: var(--hyde-white-100);
+  border-radius: var(--radius-xl);
+  padding: 24px 28px 28px;
+  position: relative;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.topLabel {
+  font-size: 14px;
+  color: var(--hyde-white-40);
+  font-weight: 500;
+}
+
+.closeBtn {
+  position: absolute;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--hyde-white-40);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeBtn:hover {
+  color: var(--hyde-white-0);
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--hyde-white-0);
+  margin: 32px 0 28px;
+  line-height: 1.3;
+}
+
+.phoneLabel {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--hyde-white-40);
+  margin-bottom: 8px;
+}
+
+.phoneRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 4px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+
+.phoneRow:focus-within {
+  border-color: var(--color-border-focus);
+}
+
+.phonePrefix {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--hyde-white-0);
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.phoneInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  padding: 12px 0;
+  font-size: 18px;
+  font-family: var(--font-base);
+  font-variant-numeric: tabular-nums;
+  color: var(--hyde-white-0);
+  background: transparent;
+}
+
+.phoneInput::placeholder {
+  color: var(--hyde-white-40);
+}
+
+.phoneHint {
+  font-size: 12px;
+  color: var(--hyde-white-40);
+  line-height: 1.4;
+  margin: 0 0 16px;
+}
+
+.submitBtn {
+  width: 100%;
+  height: 52px;
+  background: var(--color-accent);
+  color: var(--hyde-white-0);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--font-base);
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.submitBtn:hover {
+  opacity: 0.9;
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.error {
+  color: var(--color-destructive);
+  font-size: 13px;
+  margin: -8px 0 12px;
+}
+
+/* ── Code step ── */
+.codeSub {
+  text-align: center;
+  font-size: 14px;
+  color: var(--hyde-white-40);
+  margin: -16px 0 20px;
+}
+
+.codeRow {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.codeInput {
+  width: 56px;
+  height: 64px;
+  border: 2px solid var(--hyde-white-80, #e6e6e6);
+  border-radius: var(--radius-md, 12px);
+  font-size: 28px;
+  font-weight: 700;
+  font-family: var(--font-base);
+  text-align: center;
+  color: var(--hyde-white-0);
+  outline: none;
+  transition: border-color 0.15s;
+  caret-color: var(--hyde-green-100, #22EA36);
+}
+
+.codeInput:focus {
+  border-color: var(--hyde-green-100, #22EA36);
+}
+
+.backBtn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--hyde-white-40);
+  cursor: pointer;
+  font-family: var(--font-base);
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .modal {
+    max-width: 100%;
+    margin: 0 12px;
+  }
+}

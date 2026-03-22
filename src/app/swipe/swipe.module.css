@@ -1,0 +1,330 @@
+/* ═══════════════════════════════════════════════════════════════
+   Swipe page
+   ══════════════════════════════════════════════════════════════ */
+
+.page {
+  min-height: 100dvh;
+  box-sizing: border-box;
+  background: var(--hyde-white-100, #fff);
+  font-family: var(--font-base);
+  display: flex;
+  flex-direction: column;
+  /* Резерв под фиксированный BottomBar (~64px) + отступ для кнопок свайпа */
+  padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+}
+
+.swipeStep {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: max(48px, env(safe-area-inset-top, 0px)) 20px 0;
+  min-height: 0;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--hyde-white-0, #000);
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.sub {
+  font-size: 13px;
+  color: var(--hyde-white-40, #858585);
+  margin: 4px 0 0;
+  line-height: 1.45;
+}
+
+.subKb {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .subKb { display: inline; }
+}
+
+/* ── Progress ── */
+.progressBar {
+  width: 100%;
+  height: 4px;
+  background: var(--hyde-white-90, #f6f6f6);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--hyde-green-100, #22EA36);
+  border-radius: 2px;
+}
+
+.progressText {
+  font-size: 12px;
+  color: var(--hyde-white-40, #858585);
+  margin: 0 0 16px;
+  width: 100%;
+}
+
+.progressLiked { color: #e03c3c; }
+
+/* ── Loading ── */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 220px;
+  width: 100%;
+  max-width: 360px;
+  margin: 24px auto;
+  color: var(--hyde-white-40, #858585);
+}
+
+.loadingText {
+  font-size: 14px;
+  margin: 0;
+}
+
+.spinner {
+  animation: swipeSpin 0.85s linear infinite;
+  color: var(--hyde-green-100, #22ea36);
+}
+
+@keyframes swipeSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Errors ── */
+.errBanner {
+  width: 100%;
+  font-size: 13px;
+  color: #b71c1c;
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.errBox {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto 20px;
+  padding: 20px;
+  background: #fff3f3;
+  border-radius: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+}
+
+.errBox p { margin: 0 0 12px; }
+
+.retryBtn {
+  padding: 8px 16px;
+  border: 1px solid var(--hyde-white-80, #e6e6e6);
+  border-radius: 100px;
+  background: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--hyde-white-40, #858585);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* ── Empty ── */
+.emptyPanel {
+  width: 100%;
+  max-width: 380px;
+  margin: 32px auto;
+  padding: 36px 28px;
+  text-align: center;
+  background: var(--hyde-white-90, #f6f6f6);
+  border-radius: 24px;
+  color: var(--hyde-white-40, #858585);
+  font-size: 15px;
+}
+
+.emptyPanel p { margin: 0; }
+
+.emptySub {
+  font-size: 13px;
+  margin: 10px 0 0 !important;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* ── Card Stack ── */
+.cardStack {
+  position: relative;
+  width: 100%;
+  max-width: min(100%, 360px);
+  aspect-ratio: 3 / 4;
+  max-height: min(72dvh, 620px);
+  margin: 0 auto;
+  flex-shrink: 0;
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+
+.tinderCardWrap {
+  position: absolute !important;
+  inset: 0;
+  touch-action: none;
+}
+
+.card {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--hyde-white-90, #f6f6f6);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
+}
+
+.card:active { cursor: grabbing; }
+
+.cardBusy {
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.cardPhoto {
+  position: relative;
+  width: 100%;
+  height: 65%;
+  overflow: hidden;
+  background: var(--hyde-white-90);
+}
+
+.cardPhotoFallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e0e0e0, #f6f6f6);
+}
+
+.cardGradient {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+  pointer-events: none;
+}
+
+.cardBody {
+  padding: 16px 20px;
+  background: var(--hyde-white-100, #fff);
+}
+
+.cardTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--hyde-white-0, #000);
+  margin: 0 0 4px;
+  letter-spacing: -0.3px;
+}
+
+.cardCity {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--hyde-white-40, #858585);
+  margin: 0 0 8px;
+}
+
+.cardDesc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--hyde-white-40, #858585);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Flash ── */
+.flashLike, .flashNope {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 30;
+  pointer-events: none;
+}
+
+/* ── Buttons ── */
+.swipeActions {
+  display: flex;
+  gap: clamp(24px, 8vw, 40px);
+  margin-top: auto;
+  padding-top: 20px;
+  padding-bottom: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.swipeBtnNo {
+  width: min(72px, 18vw);
+  height: min(72px, 18vw);
+  min-width: 56px; min-height: 56px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  background: #fff;
+  border: 2.5px solid #e03c3c;
+  color: #e03c3c;
+  box-shadow: 0 4px 16px rgba(224,60,60,0.15);
+  transition: box-shadow 0.15s;
+}
+
+.swipeBtnNo:hover { box-shadow: 0 6px 20px rgba(224,60,60,0.22); }
+
+.swipeBtnYes {
+  width: min(72px, 18vw);
+  height: min(72px, 18vw);
+  min-width: 56px; min-height: 56px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  background: var(--hyde-green-100, #22EA36);
+  border: 2.5px solid var(--hyde-green-100, #22EA36);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(34,234,54,0.25);
+  transition: box-shadow 0.15s;
+}
+
+.swipeBtnYes:hover { box-shadow: 0 6px 22px rgba(34,234,54,0.35); }
+
+/* ── Desktop ── */
+@media (min-width: 769px) {
+  .swipeStep {
+    padding-top: max(72px, env(safe-area-inset-top, 0px));
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .title { font-size: 30px; }
+
+  .cardStack {
+    max-width: 400px;
+    max-height: min(70dvh, 640px);
+  }
+
+  .card { box-shadow: 0 12px 48px rgba(0,0,0,0.14); }
+}

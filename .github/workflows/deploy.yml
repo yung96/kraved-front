@@ -1,0 +1,18 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to hackaton.krutoy1337.ru
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: 62.113.104.22
+          username: root
+          password: "dpZWP9Rrb^!7"
+          script: /root/deploy.sh
+          command_timeout: 10m

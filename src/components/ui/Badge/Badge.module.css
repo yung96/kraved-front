@@ -1,0 +1,35 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-base);
+  white-space: nowrap;
+}
+
+/* ── Variants ── */
+.default {
+  background: var(--color-secondary);
+  color: var(--color-text);
+}
+
+.tag {
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+/* Season — по умолчанию нейтральный */
+.season {
+  background: rgba(0,0,0,0.07);
+  color: var(--color-text);
+}
+
+/* Season цвета */
+.spring { background: #fce8fc; color: #9b4d9b; }
+.summer { background: #fff8e0; color: #a07800; }
+.autumn { background: #fdeee0; color: #a05010; }
+.winter { background: #e0f0fc; color: #1060a0; }

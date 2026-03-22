@@ -1,0 +1,583 @@
+/* ── Page shell ──────────────────────────────────────────────────────────── */
+
+.page {
+  min-height: 100dvh;
+  background: var(--hyde-white-90);
+  font-family: var(--font-inter), var(--font-base), 'Inter', -apple-system, sans-serif;
+  padding-bottom: 80px;
+}
+
+/* ── Header pill ─────────────────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 14px 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.headerPill {
+  pointer-events: all;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--hyde-white-80);
+  border-radius: var(--radius-pill);
+  background: var(--hyde-white-100);
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  transition: box-shadow 0.15s;
+}
+
+.headerPill:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.11);
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--hyde-white-0);
+  letter-spacing: -0.5px;
+}
+
+.headerLabel {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--hyde-white-0);
+  letter-spacing: -0.2px;
+}
+
+/* ── Route header card ───────────────────────────────────────────────────── */
+
+.routeCard {
+  max-width: 700px;
+  margin: 20px auto 0;
+  padding: 24px;
+  background: var(--hyde-white-100);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--hyde-white-80);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  /* mobile edge-to-edge with breathing room */
+  margin-left: max(16px, calc(50% - 350px));
+  margin-right: max(16px, calc(50% - 350px));
+}
+
+.routeTitle {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--hyde-white-0);
+  letter-spacing: -0.6px;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.routeIntro {
+  font-size: 15px;
+  color: var(--hyde-white-40);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.statsRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--hyde-white-0);
+}
+
+.statDot {
+  font-size: 14px;
+  color: var(--hyde-white-80);
+  line-height: 1;
+}
+
+.warningCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 12px 14px;
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: #92400E;
+  line-height: 1.5;
+}
+
+/* ── Day section ─────────────────────────────────────────────────────────── */
+
+.daySection {
+  max-width: 700px;
+  margin: 28px auto 0;
+  margin-left: max(16px, calc(50% - 350px));
+  margin-right: max(16px, calc(50% - 350px));
+}
+
+/* ── Sticky day header pill ──────────────────────────────────────────────── */
+
+.dayHeader {
+  position: sticky;
+  top: 52px;
+  z-index: 100;
+  padding: 0 0 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.dayPill {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 18px;
+  background: var(--hyde-white-100);
+  border: 1px solid var(--hyde-white-80);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.09);
+}
+
+.dayPillMain {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--hyde-white-0);
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+}
+
+.dayPillSep {
+  font-size: 13px;
+  color: var(--hyde-white-80);
+}
+
+.dayPillTitle {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--hyde-white-40);
+  white-space: nowrap;
+}
+
+.dayPillWeather {
+  font-size: 13px;
+  color: var(--hyde-white-0);
+  white-space: nowrap;
+}
+
+.dayStopsBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--hyde-green-100);
+  color: #000;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ── Timeline container ──────────────────────────────────────────────────── */
+
+.timeline {
+  position: relative;
+  padding-left: 0;
+}
+
+/* The continuous vertical green line */
+.timelineLineMain {
+  position: absolute;
+  left: 16px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--hyde-white-80);
+  border-radius: 1px;
+  z-index: 0;
+}
+
+/* ── Stop wrapper (positions card relative to timeline line) ─────────────── */
+
+.stopWrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+/* The left column: time badge + connector segment */
+.timelineNode {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  z-index: 1;
+}
+
+.timeBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  padding: 4px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--hyde-green-100);
+  color: #000;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  position: relative;
+  left: -6px;
+  box-shadow: 0 0 0 3px var(--hyde-white-90);
+}
+
+.timelineLineSeg {
+  width: 2px;
+  flex: 1;
+  min-height: 12px;
+  background: var(--hyde-white-80);
+  border-radius: 1px;
+}
+
+/* ── Stop card ───────────────────────────────────────────────────────────── */
+
+.stopCard {
+  flex: 1;
+  margin-left: 8px;
+  background: var(--hyde-white-100);
+  border: 1px solid var(--hyde-white-80);
+  border-radius: var(--radius-xl);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.stopName {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--hyde-white-0);
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+}
+
+.stopPin {
+  font-size: 16px;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+/* ── Photos row ──────────────────────────────────────────────────────────── */
+
+.photosRow {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin: 0 -4px;
+  padding: 0 4px;
+}
+
+.photosRow::-webkit-scrollbar {
+  display: none;
+}
+
+.photoPlaceholder {
+  flex-shrink: 0;
+  width: 120px;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius-md);
+  background: var(--hyde-white-90);
+  border: 1px solid var(--hyde-white-80);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Caption ─────────────────────────────────────────────────────────────── */
+
+.stopCaption {
+  font-size: 14px;
+  color: var(--hyde-white-40);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Tip card ────────────────────────────────────────────────────────────── */
+
+.tipCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 11px 13px;
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-radius: var(--radius-md);
+}
+
+.tipIcon {
+  font-size: 15px;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.tipText {
+  font-size: 13px;
+  color: #166534;
+  line-height: 1.5;
+}
+
+/* ── Meta row ────────────────────────────────────────────────────────────── */
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--hyde-white-40);
+  font-weight: 500;
+}
+
+.metaDot {
+  font-size: 12px;
+  color: var(--hyde-white-80);
+}
+
+/* ── Schedule ────────────────────────────────────────────────────────────── */
+
+.schedule {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #166534;
+}
+
+.scheduleGreen {
+  font-size: 11px;
+  line-height: 1;
+}
+
+/* ── Transit footer ──────────────────────────────────────────────────────── */
+
+.transitFooter {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 12px;
+  background: var(--hyde-white-90);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: var(--hyde-white-40);
+  margin: 4px 0 0;
+}
+
+/* ── Recommendations section ─────────────────────────────────────────────── */
+
+.recsSection {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recsLabel {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--hyde-white-40);
+  padding-left: 48px;
+  margin-bottom: 2px;
+}
+
+/* ── Recommendation wrapper ──────────────────────────────────────────────── */
+
+.recWrapper {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Spacer that mimics the timelineNode width so rec cards align under stop cards */
+.recNodeSpacer {
+  flex-shrink: 0;
+  width: 40px;
+}
+
+/* ── Recommendation card ─────────────────────────────────────────────────── */
+
+.recCard {
+  flex: 1;
+  margin-left: 8px;
+  background: var(--hyde-white-90);
+  border: 1.5px dashed var(--hyde-white-80);
+  border-radius: var(--radius-xl);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.recHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.recTypeIcon {
+  font-size: 20px;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+
+.recHeaderText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.recLabel {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: var(--hyde-white-40);
+}
+
+.recName {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--hyde-white-0);
+  letter-spacing: -0.2px;
+}
+
+.recDist {
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--hyde-white-40);
+}
+
+.recWhy {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--hyde-white-40);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Summary section ─────────────────────────────────────────────────────── */
+
+.summarySection {
+  max-width: 700px;
+  margin: 36px auto 0;
+  margin-left: max(16px, calc(50% - 350px));
+  margin-right: max(16px, calc(50% - 350px));
+  padding: 24px;
+  background: var(--hyde-white-100);
+  border: 1px solid var(--hyde-white-80);
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.summaryText {
+  font-size: 14px;
+  color: var(--hyde-white-40);
+  line-height: 1.65;
+  max-width: 480px;
+  margin: 0;
+}
+
+.newRouteBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: var(--hyde-green-100);
+  color: #000;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  letter-spacing: -0.2px;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.newRouteBtn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.newRouteBtn:active {
+  transform: translateY(0);
+}
+
+/* ── Responsive: desktop centering helpers ───────────────────────────────── */
+
+@media (min-width: 768px) {
+  .routeCard,
+  .daySection,
+  .summarySection {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .routeTitle {
+    font-size: 22px;
+  }
+
+  .stopName {
+    font-size: 16px;
+  }
+
+  .dayPill {
+    gap: 4px;
+    padding: 8px 14px;
+  }
+
+  .dayPillMain,
+  .dayPillTitle,
+  .dayPillWeather {
+    font-size: 12px;
+  }
+
+  .photoPlaceholder {
+    width: 96px;
+  }
+}

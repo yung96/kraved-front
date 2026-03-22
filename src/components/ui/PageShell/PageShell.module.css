@@ -1,0 +1,19 @@
+.outer {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  background: var(--color-bg);
+}
+
+.inner {
+  width: 100%;
+  max-width: var(--page-max-w);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Отступ снизу когда есть BottomBar */
+.withBar {
+  padding-bottom: 96px;
+}

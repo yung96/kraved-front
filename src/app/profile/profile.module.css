@@ -1,0 +1,416 @@
+/* ── Page ─────────────────────────────────────────────────────────────────── */
+.page {
+  min-height: 100dvh;
+  background: var(--hyde-white-100);
+  font-family: var(--font-base);
+  padding-bottom: 80px;
+}
+
+/* ── Top bar (без вымышленного «города») ───────────────────────────────────── */
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--hyde-white-80);
+  background: var(--hyde-white-100);
+}
+
+.topBarLogo {
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--hyde-white-0);
+  letter-spacing: -0.4px;
+}
+
+.topBarTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--hyde-white-40);
+}
+
+.loadPage {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--hyde-white-100);
+}
+
+.loadSpin {
+  animation: profileSpin 0.8s linear infinite;
+  color: var(--hyde-white-40);
+}
+
+@keyframes profileSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Content wrapper ─────────────────────────────────────────────────────── */
+.content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── User info card ───────────────────────────────────────────────────────── */
+.userCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--hyde-white-80);
+  border-radius: var(--radius-xl);
+  background: var(--hyde-white-100);
+}
+
+.avatarCircle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--hyde-white-90);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatarInitials {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--hyde-white-0);
+  letter-spacing: -0.4px;
+}
+
+.userMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.userPhone {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--hyde-white-0);
+  letter-spacing: -0.3px;
+}
+
+.userDate {
+  font-size: 13px;
+  color: var(--hyde-white-40);
+}
+
+/* ── Section ─────────────────────────────────────────────────────────────── */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--hyde-white-0);
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.countBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  background: var(--hyde-white-90);
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--hyde-white-40);
+}
+
+/* ── Interest chips ──────────────────────────────────────────────────────── */
+.interestChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border: 1px solid var(--hyde-white-80);
+  border-radius: var(--radius-pill);
+  background: var(--hyde-white-100);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--hyde-white-0);
+  white-space: nowrap;
+}
+
+.chipEmoji {
+  font-style: normal;
+  font-size: 14px;
+}
+
+/* ── Empty state ─────────────────────────────────────────────────────────── */
+.emptyText {
+  font-size: 14px;
+  color: var(--hyde-white-40);
+  margin: 0;
+}
+
+/* ── Places grid (2 columns) ─────────────────────────────────────────────── */
+.placesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.placeCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: opacity 0.15s;
+}
+
+.placeCard:hover {
+  opacity: 0.85;
+}
+
+.placePhoto {
+  position: relative;
+  height: 80px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--hyde-white-90);
+}
+
+.placeImg {
+  object-fit: cover;
+}
+
+.placePhotoFallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--hyde-white-90);
+}
+
+.placeTitle {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--hyde-white-0);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Routes list ─────────────────────────────────────────────────────────── */
+.routesList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.routeCard {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--hyde-white-80);
+  border-radius: var(--radius-lg);
+  background: var(--hyde-white-100);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s;
+}
+
+.routeCard:hover {
+  border-color: var(--hyde-white-0);
+}
+
+.routeTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--hyde-white-0);
+}
+
+.routeMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.routeDays {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--hyde-green-40);
+  background: var(--hyde-green-100);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.routeDate {
+  font-size: 12px;
+  color: var(--hyde-white-40);
+}
+
+/* ── Actions ─────────────────────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.onboardingBtn {
+  width: 100%;
+  padding: 14px 20px;
+  border: 1px solid var(--hyde-white-80);
+  border-radius: var(--radius-pill);
+  background: var(--hyde-white-100);
+  font-family: var(--font-base);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--hyde-white-0);
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.onboardingBtn:hover {
+  border-color: var(--hyde-white-0);
+}
+
+.logoutBtn {
+  background: none;
+  border: none;
+  font-family: var(--font-base);
+  font-size: 15px;
+  font-weight: 600;
+  color: #e03c3c;
+  cursor: pointer;
+  padding: 4px 0;
+  text-align: center;
+  transition: opacity 0.15s;
+}
+
+.logoutBtn:hover {
+  opacity: 0.75;
+}
+
+/* ── Subscriptions list ──────────────────────────────────────────────────── */
+.subscriptionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subscriptionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: 1px solid var(--hyde-white-80);
+  border-radius: var(--radius-lg);
+  background: var(--hyde-white-100);
+}
+
+.subscriptionPhone {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--hyde-white-0);
+}
+
+.unsubscribeBtn {
+  background: none;
+  border: 1px solid var(--hyde-white-80);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-base);
+  font-size: 12px;
+  font-weight: 600;
+  color: #e03c3c;
+  cursor: pointer;
+  padding: 5px 12px;
+  transition: border-color 0.15s, opacity 0.15s;
+}
+
+.unsubscribeBtn:hover {
+  border-color: #e03c3c;
+  opacity: 0.8;
+}
+
+/* ── Guest state ──────────────────────────────────────────────────────────── */
+.guestPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  background: var(--hyde-white-100);
+  padding: 40px 32px;
+}
+
+.guestContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  max-width: 280px;
+  width: 100%;
+}
+
+.guestTitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--hyde-white-0);
+  letter-spacing: -0.4px;
+  margin: 0;
+}
+
+.guestSub {
+  font-size: 14px;
+  color: var(--hyde-white-40);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.guestBtn {
+  width: 100%;
+  padding: 14px 20px;
+  background: var(--hyde-green-100);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-base);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--hyde-white-0);
+  cursor: pointer;
+  margin-top: 4px;
+  transition: opacity 0.15s;
+}
+
+.guestBtn:hover {
+  opacity: 0.85;
+}
